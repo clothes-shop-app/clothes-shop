@@ -10,9 +10,9 @@ const playfairDisplay = Playfair_Display({
 
 export const Header = () => {
   return (
-    <header className="border-b border-gray-500">
+    <header className="border-b">
       <div className="flex justify-between items-end container mx-auto pt-8 pb-4">
-        <nav className="flex gap-8 flex-1">
+        <nav className="gap-8 flex-1 hidden md:flex">
           <Link href="/">Каталог</Link>
           <Link href="#">Новинки</Link>
           <Link href="#">Скидки</Link>
@@ -23,7 +23,7 @@ export const Header = () => {
             <h1 className={`text-4xl ${playfairDisplay.className}`}>Clothes</h1>
           </Link>
         </div>
-        <div className="flex gap-4 flex-1 justify-end">
+        <div className="gap-4 flex-1 justify-end hidden md:flex">
           <UserCircleIcon width={20} height={20} />
           <ShoppingCartIcon width={20} height={20} />
           <BellIcon width={20} height={20} />

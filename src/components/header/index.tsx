@@ -23,7 +23,7 @@ export const Header = () => {
             <h1 className={`text-4xl ${playfairDisplay.className}`}>Clothes</h1>
           </Link>
         </div>
-        <div className="gap-4 flex-1 justify-end hidden md:flex">
+        <div className="gap-4 flex-1 justify-end flex px-4 md:p-0">
           <UserCircleIcon width={20} height={20} />
           <ShoppingCartIcon width={20} height={20} />
           <BellIcon width={20} height={20} />

@@ -5,7 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger
 } from '@/components/ui/accordion'
-import { BaggageClaim, Container, Truck } from 'lucide-react'
+import { BaggageClaimIcon, ContainerIcon, TruckIcon } from 'lucide-react'
 import { ProductCard } from '@/components/product-card'
 import { Button } from '@/components/ui/button'
 
@@ -27,8 +27,8 @@ export default function ClothesIdPage() {
             <h2 className="leading-none font-semibold text-xl">
               Brunello Cucinelli
             </h2>
-            <p>Вязаный жилет в полоску</p>
-            <p>949 300 тг</p>
+            <p>Woven Sleeveless Top</p>
+            <p>949 300 tg</p>
           </div>
           <div className="p-4 border-b flex gap-4">
             <Button>Add to cart</Button>
@@ -39,7 +39,8 @@ export default function ClothesIdPage() {
               <AccordionItem value="item-1">
                 <AccordionTrigger>
                   <div className="flex gap-4">
-                    <BaggageClaim width={24} height={24} /> Description
+                    <BaggageClaimIcon width={24} height={24} strokeWidth={1} />{' '}
+                    Description
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
@@ -52,7 +53,8 @@ export default function ClothesIdPage() {
               <AccordionItem value="item-2">
                 <AccordionTrigger>
                   <div className="flex gap-4">
-                    <Container width={24} height={24} /> Details
+                    <ContainerIcon width={24} height={24} strokeWidth={1} />{' '}
+                    Details
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
@@ -64,7 +66,7 @@ export default function ClothesIdPage() {
               <AccordionItem value="item-3">
                 <AccordionTrigger>
                   <div className="flex gap-4">
-                    <Truck width={24} height={24} />
+                    <TruckIcon width={24} height={24} strokeWidth={1} />
                     Delivery
                   </div>
                 </AccordionTrigger>

@@ -14,8 +14,8 @@ export const ProductCard = () => {
         />
         <CardTitle>Brunello Cucinelli</CardTitle>
         <CardContent>
-          <p>Вязаный жилет в полоску</p>
-          <p>949 300 тг</p>
+          <p>Woven Sleeveless Top</p>
+          <p>949 300 tg</p>
         </CardContent>
       </Card>
     </Link>

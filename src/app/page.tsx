@@ -14,12 +14,12 @@ export default function Home() {
   return (
     <div className="my-8 space-y-4">
       <Link href="/" className="text-sm text-gray-700 p-4">
-        Главная
+        Home
       </Link>
-      <h2 className="text-center text-xl font-bold">Каталог</h2>
+      <h2 className="text-center">Catalog</h2>
       <div className="md:flex border-t">
         <div className="w-[300px] p-4 hidden md:block">
-          <p>Фильтры</p>
+          <p>Filters</p>
         </div>
         <div className="grow border-l grid grid-cols-2 md:grid-cols-4 gap-4">
           <ProductCard />

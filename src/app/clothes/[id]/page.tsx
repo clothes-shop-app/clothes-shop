@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button'
 
 export default function ClothesIdPage() {
   return (
-    <div>
+    <div className="text-sm">
       <div className="md:flex md:justify-center gap-4">
         <div className="flex justify-center border-b">
           <Image
@@ -28,14 +28,14 @@ export default function ClothesIdPage() {
               Brunello Cucinelli
             </h2>
             <p>Woven Sleeveless Top</p>
-            <p>949 300 tg</p>
+            <p>500 $</p>
           </div>
           <div className="p-4 border-b flex gap-4">
             <Button>Add to cart</Button>
             <Button variant="outline">Add to favorites</Button>
           </div>
           <div className="border-b md:border-0">
-            <Accordion type="single" collapsible className="w-full">
+            <Accordion className="w-full" type="multiple">
               <AccordionItem value="item-1">
                 <AccordionTrigger>
                   <div className="flex gap-4">

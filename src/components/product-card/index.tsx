@@ -11,11 +11,12 @@ export const ProductCard = () => {
           alt="Product photo"
           width="300"
           height="500"
+          className="mx-auto"
         />
-        <CardTitle>Brunello Cucinelli</CardTitle>
+        <CardTitle className="text-lg">Brunello Cucinelli</CardTitle>
         <CardContent>
           <p>Woven Sleeveless Top</p>
-          <p>949 300 tg</p>
+          <p>500$</p>
         </CardContent>
       </Card>
     </Link>

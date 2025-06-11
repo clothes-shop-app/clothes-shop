@@ -5,7 +5,7 @@ export const Header = () => {
   return (
     <header className="border-b">
       <div className="flex justify-between items-end container mx-auto pt-8 pb-4">
-        <nav className="gap-8 flex-1 hidden md:flex">
+        <nav className="gap-8 flex-1 hidden md:flex text-sm">
           <Link href="/">Catalog</Link>
           <Link href="#">New</Link>
           <Link href="#">Promo</Link>

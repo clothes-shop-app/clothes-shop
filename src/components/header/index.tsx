@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { UserCircleIcon, ShoppingCartIcon, BellIcon } from 'lucide-react'
+import Image from 'next/image'
 
 export const Header = () => {
   return (
@@ -13,12 +14,16 @@ export const Header = () => {
         </nav>
         <div className="flex-1 flex justify-center">
           <Link href="/">
-            <h1 className={`text-4xl`}>Clothes</h1>
+            <Image src="/logos.png" width="150" height="50" alt="logo" />
           </Link>
         </div>
         <div className="gap-4 flex-1 justify-end flex px-4 md:p-0">
-          <UserCircleIcon width={20} height={20} strokeWidth={1} />
-          <ShoppingCartIcon width={20} height={20} strokeWidth={1} />
+          <Link href="/users/1">
+            <UserCircleIcon width={20} height={20} strokeWidth={1} />
+          </Link>
+          <Link href="/cart">
+            <ShoppingCartIcon width={20} height={20} strokeWidth={1} />
+          </Link>
           <BellIcon width={20} height={20} strokeWidth={1} />
         </div>
       </div>

@@ -6,17 +6,27 @@ import {
   AccordionTrigger
 } from '@/components/ui/accordion'
 import { BaggageClaimIcon, ContainerIcon, TruckIcon } from 'lucide-react'
-import { ProductCard } from '@/components/product-card'
 import { Button } from '@/components/ui/button'
+import { Product } from '@/lib/types'
 
-export default function ClothesIdPage() {
+export default async function ClothesIdPage({
+  params
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = await params
+
+  const raw = await fetch(`http://localhost:8080/products/${id}`)
+
+  const product: Product = await raw.json()
+
   return (
     <div className="text-sm">
       <div className="md:flex md:justify-center gap-4">
         <div className="flex justify-center border-b">
           <Image
             className="max-w-md md:min-w-2xl"
-            src="/brunello-vest.webp"
+            src={product.images[0]}
             alt="Product photo"
             width="300"
             height="500"
@@ -25,10 +35,10 @@ export default function ClothesIdPage() {
         <div className="md:w-xl md:p-8">
           <div className="flex flex-col items-center p-4 gap-2 border-b">
             <h2 className="leading-none font-semibold text-xl">
-              Brunello Cucinelli
+              {product.name}
             </h2>
-            <p>Woven Sleeveless Top</p>
-            <p>500 $</p>
+            <p>{product.description}</p>
+            <p>{product.price} $</p>
           </div>
           <div className="p-4 border-b flex gap-4">
             <Button>Add to cart</Button>
@@ -43,12 +53,7 @@ export default function ClothesIdPage() {
                     Description
                   </div>
                 </AccordionTrigger>
-                <AccordionContent>
-                  Straight jeans with a medium fit made of thick denim. A button
-                  and zipper closure, a classic five-pocket model, a metal plate
-                  with an embossed brand logo on the back, arrows on the
-                  trousers, a slight scuff effect.
-                </AccordionContent>
+                <AccordionContent>{product.description}</AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
                 <AccordionTrigger>
@@ -77,15 +82,6 @@ export default function ClothesIdPage() {
               </AccordionItem>
             </Accordion>
           </div>
-        </div>
-      </div>
-      <div className="p-4">
-        <p>You might be interested:</p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
         </div>
       </div>
     </div>

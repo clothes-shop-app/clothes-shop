@@ -8,9 +8,13 @@ import {
   PaginationNext,
   PaginationPrevious
 } from '@/components/ui/pagination'
+import { Product } from '@/lib/types'
 import Link from 'next/link'
 
-export default function Home() {
+export default async function Home() {
+  const res = await fetch(`http://localhost:8080/products?page=1&limit=10`)
+  const products: Product[] = await res.json()
+
   return (
     <div className="my-4 space-y-4 text-sm">
       <div className="py-4 text-center md:text-left">
@@ -25,14 +29,9 @@ export default function Home() {
           <p>Filters (Soon)</p>
         </div>
         <div className="grow border-l grid grid-cols-2 md:grid-cols-4 gap-4">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {products?.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </div>
       </div>
       <Pagination>

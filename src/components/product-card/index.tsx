@@ -1,22 +1,27 @@
 import Image from 'next/image'
 import { Card, CardContent, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
+import { Product } from '@/lib/types'
 
-export const ProductCard = () => {
+interface IProductCardProps {
+  product: Product
+}
+
+export const ProductCard = ({ product }: IProductCardProps) => {
   return (
-    <Link href="/clothes/123">
+    <Link href={`/clothes/${product.id}`}>
       <Card className="text-center hover:outline">
         <Image
-          src="/brunello-vest.webp"
+          src={product.images?.[0]}
           alt="Product photo"
           width="300"
-          height="500"
-          className="mx-auto"
+          height="300"
+          className="mx-auto w-full h-full object-cover"
         />
-        <CardTitle className="text-lg">Brunello Cucinelli</CardTitle>
+        <CardTitle className="text-lg">{product.name}</CardTitle>
         <CardContent>
-          <p>Woven Sleeveless Top</p>
-          <p>500$</p>
+          <p>{product.description}</p>
+          <p>{product.price}$</p>
         </CardContent>
       </Card>
     </Link>

@@ -3,6 +3,7 @@ import { Lora } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
+import { Toaster } from '@/components/ui/sonner'
 
 const lora = Lora({
   variable: '--font-lora',
@@ -25,6 +26,7 @@ export default function RootLayout({
         <Header />
         <div className="container mx-auto">{children}</div>
         <Footer />
+        <Toaster />
       </body>
     </html>
   )

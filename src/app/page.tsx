@@ -12,7 +12,7 @@ import { Product } from '@/lib/types'
 import Link from 'next/link'
 
 export default async function Home() {
-  const res = await fetch(`http://localhost:8080/products?page=1&limit=10`)
+  const res = await fetch(`${process.env.BACKEND_URL}/products?page=1&limit=10`)
   const products: Product[] = await res.json()
 
   return (

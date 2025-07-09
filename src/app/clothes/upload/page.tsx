@@ -110,7 +110,7 @@ export default function Page() {
     }
 
     try {
-      const raw = await fetch('http://localhost:8080/products', {
+      const raw = await fetch(`${process.env.BACKEND_URL}/products`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -16,7 +16,7 @@ export default async function ClothesIdPage({
 }) {
   const { id } = await params
 
-  const raw = await fetch(`http://localhost:8080/products/${id}`)
+  const raw = await fetch(`${process.env.BACKEND_URL}/products/${id}`)
 
   const product: Product = await raw.json()
 

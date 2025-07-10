@@ -118,13 +118,11 @@ export default function Page() {
         body: JSON.stringify(productData)
       })
 
-      if (!raw.ok) {
-        throw new Error('Failed to create product')
-      }
-
       const response = await raw.json()
 
-      console.log('Product data:', response)
+      if (!response.ok) {
+        throw new Error('Failed to create product')
+      }
 
       // Show success toast
       toast.success('Product uploaded successfully!', {

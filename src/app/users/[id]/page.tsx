@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import Link from 'next/link'
 import Orders from '@/components/users/tabs/orders'

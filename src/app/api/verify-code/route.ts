@@ -18,11 +18,45 @@ export async function POST(request: Request) {
     })
 
     if (verificationCheck.status === 'approved') {
-      return NextResponse.json({
+      const res = await fetch(
+        `${process.env.BACKEND_URL}/users/phone/${phoneNumber}`,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      )
+
+      const data = await res.json()
+
+      if (res.status === 404) {
+        return NextResponse.json({
+          success: true,
+          message: 'User is not registered.',
+          status: verificationCheck.status,
+          data: null
+        })
+      }
+
+      // Create response with user data
+      const response = NextResponse.json({
         success: true,
         message: 'Phone number verified successfully',
-        status: verificationCheck.status
+        status: verificationCheck.status,
+        data
       })
+
+      // Set HTTP-only cookie with token if it exists
+      if (data.token) {
+        response.cookies.set('token', data.token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
+          maxAge: 60 * 60 * 24 * 7
+        })
+      }
+
+      return response
     } else {
       return NextResponse.json(
         {

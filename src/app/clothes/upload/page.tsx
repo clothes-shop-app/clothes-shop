@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight, InfoIcon, Upload, X } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
 import { toast } from 'sonner'
+import { uploadProduct } from '@/lib/actions/upload-product'
 
 interface UploadedFile {
   name: string
@@ -94,51 +95,6 @@ export default function Page() {
     setUploadedFiles(prev => prev.filter((_, i) => i !== index))
   }
 
-  async function handleSubmit(formData: FormData) {
-    const name = formData.get('name')
-    const description = formData.get('description')
-    const price = formData.get('price')
-    const categoryId = formData.get('categoryId')
-
-    // Include uploaded file URLs
-    const productData = {
-      name,
-      description,
-      price: Number(price),
-      categoryId,
-      images: uploadedFiles.map(file => file.url)
-    }
-
-    try {
-      const raw = await fetch(`${process.env.BACKEND_URL}/products`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(productData)
-      })
-
-      const response = await raw.json()
-
-      if (!response.ok) {
-        throw new Error('Failed to create product')
-      }
-
-      // Show success toast
-      toast.success('Product uploaded successfully!', {
-        description: `${name} has been added to the catalog.`
-      })
-
-      // Clear form and uploaded files
-      setUploadedFiles([])
-    } catch (error) {
-      console.error('Failed to create product:', error)
-      toast.error('Failed to upload product', {
-        description: 'Please try again or check your connection.'
-      })
-    }
-  }
-
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const nextImage = () => {
@@ -156,7 +112,7 @@ export default function Page() {
   return (
     <div className="flex items-center md:py-8">
       <form
-        action={handleSubmit}
+        action={uploadProduct}
         className="flex flex-col gap-4 p-4 bg-white w-full md:max-w-xl"
       >
         <h2 className="text-xl font-bold">Upload a new product</h2>
@@ -217,6 +173,12 @@ export default function Page() {
             </div>
           )}
         </div>
+
+        <input
+          type="hidden"
+          name="images"
+          value={uploadedFiles.map(file => file.url).join(',')}
+        />
 
         <div className="relative">
           <div className="flex overflow-hidden rounded-lg">

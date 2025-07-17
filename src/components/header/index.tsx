@@ -1,8 +1,11 @@
 import Link from 'next/link'
 import { UserCircleIcon, ShoppingCartIcon, BellIcon } from 'lucide-react'
 import Image from 'next/image'
+import { cookies } from 'next/headers'
 
-export const Header = () => {
+export const Header = async () => {
+  const token = (await cookies()).get('token')
+
   return (
     <header className="border-b">
       <div className="flex justify-between items-end container mx-auto pt-8 pb-4">
@@ -18,7 +21,7 @@ export const Header = () => {
           </Link>
         </div>
         <div className="gap-4 flex-1 justify-end flex px-4 md:p-0">
-          <Link href={true ? `/users/1` : '/login'}>
+          <Link href={token ? `/users/1` : '/login'}>
             <UserCircleIcon width={20} height={20} strokeWidth={1} />
           </Link>
           <Link href="/cart">

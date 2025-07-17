@@ -7,14 +7,15 @@ import {
   InputOTPGroup,
   InputOTPSlot
 } from '@/components/ui/input-otp'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { toast } from 'sonner'
 
 export default function LoginPage() {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [isCodeSent, setIsCodeSent] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [code, setCode] = useState('')
+  const router = useRouter()
 
   const handleSendOTP = async () => {
     setIsLoading(true)
@@ -30,30 +31,25 @@ export default function LoginPage() {
 
   const handleVerifyOTP = async () => {
     setIsLoading(true)
-    const response = await fetch('/api/verify-code', {
+    const raw = await fetch('/api/verify-code', {
       method: 'POST',
       body: JSON.stringify({ phoneNumber, code })
     })
-    const data = await response.json()
-    setIsLoading(false)
+    const res = await raw.json()
 
-    if (data.success && data.status === 'approved') {
-      toast.success('OTP verified successfully')
+    console.log(res)
 
-      const response = await fetch(
-        `${process.env.BACKEND_URL}/users/${phoneNumber}`
-      )
-      const data = await response.json()
-      console.log(data)
-
-      if (data.user) {
-        toast.success('User found')
+    if (res.success) {
+      if (res.data) {
+        if (res.data.token) {
+          localStorage.setItem('token', res.data.token)
+        }
+        router.push('/')
       } else {
-        toast.error('User not found')
+        router.push('/register')
       }
-    } else {
-      toast.error('Invalid OTP')
     }
+    setIsLoading(false)
   }
 
   return (

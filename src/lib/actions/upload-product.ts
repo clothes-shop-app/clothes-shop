@@ -1,7 +1,15 @@
 'use server'
 
-export async function uploadProduct(formData: FormData) {
-  const res = await fetch(`${process.env.BACKEND_URL}/products`, {
+interface State {
+  error?: string | null
+  success?: string | null
+}
+
+export async function uploadProduct(
+  _prevState: State,
+  formData: FormData
+): Promise<State> {
+  const raw = await fetch(`${process.env.BACKEND_URL}/products`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -15,5 +23,11 @@ export async function uploadProduct(formData: FormData) {
     })
   })
 
-  return res.json()
+  const res = await raw.json()
+
+  if (res.error) {
+    return { error: res.error }
+  }
+
+  return { success: res.success }
 }

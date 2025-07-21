@@ -2,9 +2,9 @@ export const dynamic = 'force-dynamic'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import Link from 'next/link'
-import Orders from '@/components/users/tabs/orders'
-import Refunds from '@/components/users/tabs/refunds'
-import Info from '@/components/users/tabs/info'
+import Orders from './components/tabs/orders'
+import Refunds from './components/tabs/refunds'
+import Info from './components/tabs/info'
 
 export default function UserPage() {
   return (

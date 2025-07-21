@@ -16,7 +16,7 @@ export const ProductCard = ({ product }: IProductCardProps) => {
           alt="Product photo"
           width="300"
           height="300"
-          className="mx-auto w-full h-full object-cover"
+          className="mx-auto w-[300px] h-[300px] object-cover"
         />
         <CardTitle className="text-lg">{product.name}</CardTitle>
         <CardContent>

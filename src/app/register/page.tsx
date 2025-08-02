@@ -22,7 +22,7 @@ export default function Register() {
             <Input
               type="text"
               placeholder="Phone number"
-              name="phoneNumber"
+              name="phone"
               required
             />
             <Input type="text" placeholder="Address" name="address" />

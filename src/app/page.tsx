@@ -30,7 +30,7 @@ export default async function Home() {
         <div className="w-[300px] py-4 hidden md:block">
           <p>Filters (Soon)</p>
         </div>
-        <div className="grow border-l grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grow border-l grid grid-cols-2 md:grid-cols-4">
           {products?.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}

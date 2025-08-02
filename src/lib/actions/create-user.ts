@@ -20,7 +20,7 @@ export async function createUser(
     },
     body: JSON.stringify({
       name: formData.get('name'),
-      phoneNumber: formData.get('phoneNumber'),
+      phone: formData.get('phone'),
       address: formData.get('address')
     })
   })

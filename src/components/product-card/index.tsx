@@ -10,16 +10,16 @@ interface IProductCardProps {
 export const ProductCard = ({ product }: IProductCardProps) => {
   return (
     <Link href={`/clothes/${product.id}`}>
-      <Card className="text-center hover:outline">
+      <Card className="relative hover:outline hover:z-20 z-10">
         <Image
           src={product.images?.[0]}
           alt="Product photo"
           width="300"
           height="300"
-          className="mx-auto w-[300px] h-[300px] object-cover"
+          className="block w-full h-[300px] object-cover object-top"
         />
-        <CardTitle className="text-lg">{product.name}</CardTitle>
-        <CardContent>
+        <CardTitle className="px-4 text-lg">{product.name}</CardTitle>
+        <CardContent className="px-4">
           <p>{product.description}</p>
           <p>{product.price}$</p>
         </CardContent>

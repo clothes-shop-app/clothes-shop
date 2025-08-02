@@ -5,8 +5,16 @@ import Link from 'next/link'
 import Orders from './components/tabs/orders'
 import Refunds from './components/tabs/refunds'
 import Info from './components/tabs/info'
+import { getUserClaimsFromCookie, isUserAuthenticated } from '@/lib/auth'
+import { redirect } from 'next/navigation'
 
-export default function UserPage() {
+export default async function UserPage() {
+  if (!(await isUserAuthenticated())) {
+    redirect('/login')
+  }
+
+  const claims = await getUserClaimsFromCookie()
+
   return (
     <div className="container mx-auto text-sm my-4 space-y-4">
       <div className="py-4 text-center md:text-left">
@@ -22,7 +30,7 @@ export default function UserPage() {
             <div className="w-[100px] h-[100px] bg-gray-200 rounded-full"></div>
           </div>
           <div className="flex justify-center items-center">
-            <p>John Doe</p>
+            <p>{claims?.name || claims?.email || 'User'}</p>
           </div>
         </div>
         <div className="flex justify-center w-full flex-col gap-4">

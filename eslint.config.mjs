@@ -9,12 +9,12 @@ const compat = new FlatCompat({
   baseDirectory: __dirname
 })
 
-const eslintConfig = [
-  ...compat.extends(
-    'plugin:prettier/recommended',
-    'next/core-web-vitals',
-    'next/typescript'
-  )
-]
+const eslintConfig = [{
+  ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts"]
+}, ...compat.extends(
+  'plugin:prettier/recommended',
+  'next/core-web-vitals',
+  'next/typescript'
+)]
 
 export default eslintConfig

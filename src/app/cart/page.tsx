@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { cookies } from 'next/headers'
 import CartItem from '@/lib/types/cart-item'
+import { redirect } from 'next/navigation'
 
 export default async function Cart() {
   const cookieStore = await cookies()
@@ -17,6 +18,10 @@ export default async function Cart() {
 
   const data = await res.json()
 
+  if (data.error) {
+    redirect('/login')
+  }
+
   return (
     <div className="container mx-auto text-sm my-4 space-y-4">
       <div className="py-4 text-center md:text-left">
@@ -28,7 +33,7 @@ export default async function Cart() {
       </div>
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex-1 border divide-y p-4 space-y-4">
-          {data.map((item: CartItem) => (
+          {data?.map((item: CartItem) => (
             <div
               key={item.id}
               className="flex items-center justify-between p-4 gap-4"

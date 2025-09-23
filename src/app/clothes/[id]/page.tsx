@@ -10,6 +10,7 @@ import {
 import { BaggageClaimIcon, ContainerIcon, TruckIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Product } from '@/lib/types'
+import { addToCart } from '@/lib/actions/add-to-cart'
 
 export default async function ClothesIdPage({
   params
@@ -43,7 +44,10 @@ export default async function ClothesIdPage({
             <p>{product.price} $</p>
           </div>
           <div className="p-4 border-b flex gap-4">
-            <Button>Add to cart</Button>
+            <form action={addToCart}>
+              <input type="hidden" name="productId" value={product.id} />
+              <Button type="submit">Add to cart</Button>
+            </form>
             <Button variant="outline">Add to favorites</Button>
           </div>
           <div className="border-b md:border-0">

@@ -38,11 +38,11 @@ export default async function Cart() {
               key={item.id}
               className="flex items-center justify-between p-4 gap-4"
             >
-              <div className="flex">
+              <div className="flex gap-4">
                 <Image
                   src={item.image}
                   alt="Product photo"
-                  className="w-[150px] h-[150px] object-contain"
+                  className="w-[150px] h-[150px] object-contain bg-gray-200"
                   width="150"
                   height="150"
                 />
@@ -51,8 +51,10 @@ export default async function Cart() {
                   <p className="text-sm text-gray-500">{item.price} $</p>
                 </div>
               </div>
-              <div>x {item.quantity}</div>
-              <div>{item.price * item.quantity} $</div>
+              <div className="flex flex-col items-center gap-2">
+                <p>{item.price * item.quantity} $</p>
+                <Button className="w-full">Checkout</Button>
+              </div>
             </div>
           ))}
         </div>
@@ -71,9 +73,6 @@ export default async function Cart() {
               <p>75 $</p>
             </li>
           </ul>
-          <div className="w-full">
-            <Button className="w-full">Checkout</Button>
-          </div>
         </div>
       </div>
     </div>

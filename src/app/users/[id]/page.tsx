@@ -29,8 +29,11 @@ export default async function UserPage() {
           <div className="flex justify-center items-center">
             <div className="w-[100px] h-[100px] bg-gray-200 rounded-full"></div>
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex flex-col justify-center items-center">
             <p>{claims?.name || claims?.email || 'User'}</p>
+            <Link href="/clothes/upload" className="text-blue-500">
+              Upload an item
+            </Link>
           </div>
         </div>
         <div className="flex justify-center w-full flex-col gap-4">
